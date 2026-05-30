@@ -1,0 +1,1 @@
+{"version":2,"defects":{"CheckoutTest::testTanpaGratisOngkir":8,"CheckoutTest::testGratisOngkir":8,"CheckoutTest::testGratisOngkirDanDiskon":8},"times":{"CheckoutTest::testTanpaGratisOngkir":0.009,"CheckoutTest::testGratisOngkir":0.026,"CheckoutTest::testGratisOngkirDanDiskon":0.027}}

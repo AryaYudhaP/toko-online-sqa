@@ -1,0 +1,30 @@
+name: SQA CI & CT Pipeline
+on: [push, pull_request]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Setup PHP Environment
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: json, mbstring
+          coverage: xdebug
+
+      - name: Install Composer Dependencies
+        run: composer install --no-progress --prefer-dist
+
+      - name: Run PHPUnit Tests
+        run: php vendor/bin/phpunit tests/
+
+      - name: Start PHP Local Server
+        run: php -S 127.0.0.1:8000 &
+
+      - name: Run Cypress E2E Tests
+        uses: cypress-io/github-action@v6
+        with:
+          wait-on: 'http://127.0.0.1:8000'
